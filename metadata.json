@@ -1,0 +1,6 @@
+{
+  "name": "Emergency Response Command Center",
+  "description": "Real-Time Emergency Monitoring and Response Management System with live incident mapping, response team dispatch, alerts, and analytics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

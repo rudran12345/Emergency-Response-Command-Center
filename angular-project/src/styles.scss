@@ -1,0 +1,104 @@
+/* Custom Design System for Emergency Operations Center */
+:root {
+  --bg-primary: #07090e;
+  --bg-secondary: #0d121c;
+  --panel: rgba(15, 23, 38, 0.75);
+  --border: rgba(45, 65, 95, 0.4);
+  --critical: #ef4444;
+  --critical-glow: rgba(239, 68, 68, 0.4);
+  --warning: #f59e0b;
+  --warning-glow: rgba(245, 158, 11, 0.4);
+  --success: #10b981;
+  --success-glow: rgba(16, 185, 129, 0.4);
+  --info: #06b6d4;
+  --info-glow: rgba(6, 182, 212, 0.4);
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-tech: 'Chakra Petch', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body.command-center-body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.08) 0%, transparent 60%),
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 32px 32px, 32px 32px;
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+/* Glass Panels */
+.glass-panel {
+  background: var(--panel);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  position: relative;
+  border-radius: 12px;
+}
+
+.glass-panel-glow {
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.15), inset 0 0 15px rgba(6, 182, 212, 0.05);
+}
+
+.glass-panel-critical {
+  border-color: rgba(239, 68, 68, 0.5);
+  box-shadow: 0 0 25px rgba(239, 68, 68, 0.2), inset 0 0 10px rgba(239, 68, 68, 0.05);
+}
+
+/* Technical Corner Accents */
+.tech-corners {
+  position: relative;
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    pointer-events: none;
+  }
+  &::before {
+    top: -1px;
+    left: -1px;
+    border-top: 2px solid var(--info);
+    border-left: 2px solid var(--info);
+  }
+  &::after {
+    bottom: -1px;
+    right: -1px;
+    border-bottom: 2px solid var(--info);
+    border-right: 2px solid var(--info);
+  }
+}
+
+/* Subtle animations */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.05); }
+}
+
+@keyframes scan {
+  0% { top: 0%; opacity: 0; }
+  50% { opacity: 0.5; }
+  100% { top: 100%; opacity: 0; }
+}
+
+@keyframes marker-pulse {
+  0% { transform: scale(0.9); opacity: 0.9; }
+  50% { transform: scale(1.6); opacity: 0; }
+  100% { transform: scale(0.9); opacity: 0; }
+}
+
+.pulse { animation: pulse-glow 2s infinite ease-in-out; }
+.marker-pulse { animation: marker-pulse 2s infinite ease-out; }

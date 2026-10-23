@@ -258,6 +258,8 @@ class EmergencyDataService {
 
   private timer: number | null = null;
   private simulationTick = 0;
+  private nextIncidentNum = 1052;
+  private nextAlertNum = 906;
 
   constructor() {
     this.recalculateStats();
@@ -394,7 +396,7 @@ class EmergencyDataService {
   public addIncident(incident: Omit<Incident, 'id' | 'time'>): Incident {
     const now = new Date();
     const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
-    const nextNum = 1040 + this.incidents.length + 1;
+    const nextNum = this.nextIncidentNum++;
     const newInc: Incident = {
       ...incident,
       id: `INC-${nextNum}`,
@@ -489,8 +491,9 @@ class EmergencyDataService {
   public addAlert(data: { type: AlertType; message: string; sector: string }) {
     const now = new Date();
     const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+    const nextNum = this.nextAlertNum++;
     const newAlert: Alert = {
-      id: `ALT-${Date.now().toString().slice(-4)}`,
+      id: `ALT-${nextNum}`,
       type: data.type,
       message: data.message,
       time: timeStr,
